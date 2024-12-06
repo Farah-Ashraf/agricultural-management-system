@@ -1,13 +1,20 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
+
 
 function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/signin" element={<SignIn />} />
 
-  return (
-    <>
-    <p className=' bg-danger'>hello</p>
-    </>
-  )
+            </Routes>
+        </Router>
+    );
 }
 
-export default App
+export default App;
