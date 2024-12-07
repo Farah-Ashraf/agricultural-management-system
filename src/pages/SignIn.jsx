@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import * as Yup from 'yup';
@@ -8,6 +8,19 @@ import logo from '../assets/images/logo.png'; // Adjust the path to your logo
 
 
 const Signin = () => {
+
+      // Loading state to manage the animation
+      const [loading, setLoading] = useState(true);
+
+      // Use useEffect to simulate loading for 3 seconds
+      useEffect(() => {
+          const timer = setTimeout(() => {
+               setLoading(false); // Hide loading animation after 3 seconds
+          }, 2000);
+      
+          return () => clearTimeout(timer); // Cleanup on unmount
+      }, []);
+  
   const validationSchema = Yup.object({
     username: Yup.string().required("Username is required"),
     password: Yup.string()
@@ -26,6 +39,15 @@ const Signin = () => {
       setSubmitting(false);
     }
   };
+
+  if (loading) {
+    return (
+        <div className="loading-screen">
+            <div className="square"></div> {/* Customize your loader styles */}
+        </div>
+    );
+}
+
 
   return (
 
